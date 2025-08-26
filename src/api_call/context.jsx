@@ -1,9 +1,8 @@
 import { createContext, useContext } from 'react'
-import { QueryClient } from './query-client'
 
-const QueryClientContext = createContext(undefined)
+const QueryClientContext = createContext();
 
-function QueryClientProvider({ client, children }) {
+const QueryClientProvider = ({ client, children }) => {
   return (
     <QueryClientContext.Provider value={client}>
       {children}
@@ -11,7 +10,7 @@ function QueryClientProvider({ client, children }) {
   )
 }
 
-function useQueryClient() {
+const useQueryClient = () => {
   const client = useContext(QueryClientContext)
   if (!client) {
     throw new Error('No QueryClient set, use QueryClientProvider to set one')
